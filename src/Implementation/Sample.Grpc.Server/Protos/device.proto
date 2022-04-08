@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "Sample.Grpc.Server";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+package product;
+
+service Product {
+    rpc Unary_GetProductByName(GetProductValidationRequest) returns (GetProductResponse){}
+    rpc Unary_GetProductById(GetProductRequest) returns (GetProductResponse){}
+}
+
+
+message GetProductValidationRequest {
+	string Name = 1;
+}
+
+message GetProductRequest {
+	string ProductId = 1;
+}
+
+
+message GetProductResponse {
+    string Name = 1;
+    string ProductId = 2;
+    string Description = 3;
+}
+
